@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+ </head>
+ <body>
+     
+
+
+	 <script>
+		function createXHR(){
+			var xhr;
+			if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
+				xhr=new XMLHttpRequest();
+			}else{ // code for IE6, IE5
+				xhr=new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			return xhr;
+		}
+		var xhr = createXHR();
+		console.log(xhr.readyState);
+		xhr.onreadystatechange = function(){
+			console.log(xhr.readyState);
+			if(xhr.readyState == 4) {
+				if((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+					console.log(xhr.responseText);
+				}else {
+					console.log("request was unsuccessful:"+xhr.status);
+				}
+			}
+		};
+		function addURLParam(url,name,value) {
+		   url += (url.indexOf("?") == -1 ? "?" : "&");
+		   url += encodeURIComponent(name) + "=" + encodeURIComponent(value);
+		   return url;
+		}
+
+		var url = "ajax.txt";
+		url = addURLParam(url,"name","Nicholas");
+
+		xhr.open('get',url,false);
+		xhr.timeout = 10;
+		xhr.ontimeout = function(){
+			alert(1);
+		}
+		//xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		//xhr.setRequestHeader("MyHeader","MyValue");
+		xhr.send(null);
+
+		
+	 </script>
+ </body>
+</html>
