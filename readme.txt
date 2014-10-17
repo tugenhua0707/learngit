@@ -4,4 +4,5 @@ Git is fradasdee softwasdasdsdasdare.
 adasdasd334567
 ---------------
 +++++++++++++++++
-Creating a new branch is quick & simple.
+Creating a new branch is quick AND simple.
+
